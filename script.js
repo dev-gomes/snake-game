@@ -64,7 +64,7 @@ window.onload = function(){
 			ay = Math.floor(Math.random() * qp);
 		}
 
-		document.addEventListener('keydown', (event) => {
+		document.addEventListener('keydown', (event) => { //evento que escuta quando uma tecla é pressionada
 			switch (event.key) {
 				case 'ArrowLeft': //left
 					vx = -vel;
