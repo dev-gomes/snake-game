@@ -20,7 +20,7 @@ window.onload = function(){
 	let ay = 15; // posição inicial da maça y
 
 	let trail = []; // array onde será armazenado o rastro da cobra
-	tail = 5;
+	let tail;
 
 	function game(){
 		px += vx;
@@ -35,21 +35,22 @@ window.onload = function(){
 		} else if (py > qp - 1) {
 			py = 0;
 		}
-
-		ctx.fillStyle = 'black'; //define a cor do cenário como black = preta.
-		ctx.fillRect(0, 0, stage.width, stage.height); //define que o cénario iniciará nos pontos 0, e que a largura e altura será do tamnaho do width e weight definidos no html
 		
-		ctx.fillStyle = 'red';
-		ctx.fillRect(ax * tp, ay * tp, tp, tp);
+		ctx.fillStyle = '#7dcf51';
+		ctx.fillRect(0, 0, stage.width, stage.height);
 
-		ctx.fillStyle = 'gray';
+		var maça = new Image();
+		maça.src = "images/maça.png";
+		ctx.drawImage(maça, ax * tp, ay * tp, tp, tp);
+
+		ctx.fillStyle = '#dedede';
 		for (let index = 0; index < trail.length; index++) {
 			ctx.fillRect(trail[index].x * tp, trail[index].y * tp, tp - 1, tp - 1);
 			
 			if (trail[index].x == px && trail[index].y == py) {
 				vx = 0;
 				vy = 0;
-				tail = 5;
+				tail = 1;
 			}
 		}
 
@@ -60,8 +61,8 @@ window.onload = function(){
 
 		if (ax == px && ay == py) {
 			tail++;
-			ax = Math.floor(Math.random() * qp);
-			ay = Math.floor(Math.random() * qp);
+			ax = Math.floor(Math.random() * qp); // gera posições aleátorias para a maça
+			ay = Math.floor(Math.random() * qp); // gera posições aleátorias para a maça
 		}
 
 		document.addEventListener('keydown', (event) => { //evento que escuta quando uma tecla é pressionada
@@ -84,7 +85,6 @@ window.onload = function(){
 				break;
 				default:
 				break;
-
 			}
 		});
 	}
